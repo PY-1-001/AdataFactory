@@ -1,0 +1,15 @@
+{
+	"name": "complexpipelineadf",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2484a9ab-1e18-4791-9735-51caed239eb9",
+		"tenantId": "eb061ffc-82f6-4e8c-83d3-454962c6122b"
+	}
+}
