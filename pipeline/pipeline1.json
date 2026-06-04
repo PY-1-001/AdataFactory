@@ -240,7 +240,7 @@
 						},
 						"ErrorMessage": {
 							"value": {
-								"value": "@activity('Copy_Incremental_Orders').Error.Message",
+								"value": "@if(\n    equals(activity('Copy_Incremental_Orders').Status,'failed'),\n    string(activity('Copy_Incremental_Orders').Error),\n    'No Error'\n    )",
 								"type": "Expression"
 							},
 							"type": "String"
