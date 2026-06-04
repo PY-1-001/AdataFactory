@@ -34,12 +34,12 @@
 			],
 			"scriptLines": [
 				"source(output(",
-				"          movie as string,",
+				"          movie as integer,",
 				"          title as string,",
 				"          genres as string,",
-				"          year as string,",
-				"          Rating as string,",
-				"          {Rotton Tomato} as string 'RottenTomato'",
+				"          year as short,",
+				"          Rating as short,",
+				"          {Rotton Tomato} as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -64,6 +64,15 @@
 				"     partitionFileNames:['movies_review.json'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          movie,",
+				"          title,",
+				"          genres,",
+				"          year,",
+				"          Rating,",
+				"          RottenTomato,",
+				"          Review",
+				"     ),",
 				"     partitionBy('hash', 1)) ~> JsonFile"
 			]
 		}
