@@ -27,6 +27,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "cast1"
 				}
 			],
 			"scriptLines": [
@@ -41,8 +44,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> CSV",
-				"select1 derive(Review = iif('Rotton Tomato' < '60' , \"Not to Watch\", \"Must Watch\"),",
-				"          RottenTomato = RottenTomato) ~> derivedColumn1",
+				"cast1 derive(Review = iif(RottenTomato < 60 , 'Not to Watch', 'Must Watch')) ~> derivedColumn1",
 				"CSV select(mapColumn(",
 				"          movie,",
 				"          title,",
@@ -53,6 +55,10 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 cast(output(",
+				"          RottenTomato as integer",
+				"     ),",
+				"     errors: true) ~> cast1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['movies_review.json'],",
